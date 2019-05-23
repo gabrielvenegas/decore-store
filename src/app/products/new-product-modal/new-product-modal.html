@@ -90,7 +90,7 @@
         <mat-label>Quantidade</mat-label>
         <input matInput [(ngModel)]="product.amount">
     </mat-form-field>
-    <mat-checkbox (change)="addColors($event)" [value]="color.id" style="padding-left: 2%;" *ngFor="let color of colors; trackBy:color?.id;">{{color.name}}</mat-checkbox>
+    <mat-checkbox (change)="addColors($event)" style="padding-left: 2%;" *ngFor="let color of colors" [value]="color.id">{{color.name}}</mat-checkbox>
     <div mat-dialog-actions>
         <button mat-button class="btn btn-success" (click)="create()">CRIAR</button>
     </div>

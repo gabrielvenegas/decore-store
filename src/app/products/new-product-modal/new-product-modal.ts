@@ -16,7 +16,7 @@ export class NewProductModal implements OnInit, OnDestroy {
         price: 0,
         discountPrice: 0,
         idCategory: 0,
-        type: 0,
+        type: "0",
         height: 0,
         width: 0,
         diameter: 0,

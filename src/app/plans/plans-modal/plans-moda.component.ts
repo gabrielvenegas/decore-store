@@ -11,13 +11,14 @@ export interface DialogData {
     templateUrl: 'plans-modal.component.html',
 })
 export class PlansModalComponent implements OnInit {
-
+    obj: any;
 
     constructor(
         public dialogRef: MatDialogRef<PlansModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
     ngOnInit(): void {
+        this.obj = this.data;
         console.log(this.data);
     }
 

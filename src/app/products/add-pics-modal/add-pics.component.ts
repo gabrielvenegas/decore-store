@@ -28,7 +28,8 @@ export class AddPicsComponent implements OnInit {
         }
     };
 
-    product = {};
+    product: any;
+
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, private productService: ProductService) {
         this.afuConfig.uploadAPI = {
             url: `http://localhost:3000/api/product/images?idProduct=${data}`
