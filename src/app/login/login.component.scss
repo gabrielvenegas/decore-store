@@ -1,0 +1,21 @@
+.login-title {
+    text-align: center;
+}
+
+.login-row {
+    margin-top: 25vh;
+}
+
+.login-card {
+    @media (min-width: 800px) {
+        left: 25%;
+    }
+}
+
+.login-input {
+    left: 18%;
+}
+
+form {
+    text-align: center;
+}

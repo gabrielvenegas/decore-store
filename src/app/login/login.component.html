@@ -1,0 +1,30 @@
+<div class="container-fluid login">
+  <div class="row login-row">
+    <div class="col-lg-6 col-md-6 login-card">
+      <div class="card">
+        <div class="card-header card-header-tabs card-header-primary">
+          <h3 class="login-title">Projeto Esperança</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-8 login-input">
+                <mat-form-field>
+                  <input [(ngModel)]="loginParams.mail" name="email" matInput placeholder="Email" type="email">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 login-input">
+                <mat-form-field>
+                  <input [(ngModel)]="loginParams.password" name="password" matInput placeholder="Senha" type="password">
+                </mat-form-field>
+              </div>
+            </div>
+            <button mat-raised-button class="btn btn-primary" (click)="login()">LOGIN</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

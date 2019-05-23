@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Novo plano</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Referencia</mat-label>
+        <input matInput [(ngModel)]="plan.reference">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="plan.preApproval.name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cobrança</mat-label>
+        <mat-select matInput [(ngModel)]="plan.preApproval.charge">
+            <mat-option value="MANUAL">
+                MANUAL
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Período</mat-label>
+        <mat-select matInput [(ngModel)]="plan.preApproval.period">
+            <mat-option value="MONTHLY">
+                MONTHLY
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Valor por pagamento</mat-label>
+        <input matInput [(ngModel)]="plan.preApproval.amountPerPayment">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Dia do mes</mat-label>
+        <input matInput [(ngModel)]="plan.preApproval.dayOfMonth">                                                                                              
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Detalhes</mat-label>
+        <input matInput [(ngModel)]="plan.preApproval.details">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Data inicial</mat-label>
+        <input [(ngModel)]="plan.preApproval.initialDate" matInput [matDatepicker]="picker" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Data final</mat-label>
+        <input [(ngModel)]="plan.preApproval.finalDate" matInput [matDatepicker]="picker2" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" #picker2></mat-datepicker>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button class="btn btn-success" (click)="create()">CRIAR</button>
+</div>

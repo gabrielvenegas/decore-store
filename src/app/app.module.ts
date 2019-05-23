@@ -1,49 +1,44 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
+
+import { AppRoutingModule } from './app.routing';
+import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
-import { PageModule } from 'src/pages/page.module';
-import { RouterModule, Routes } from '@angular/router'
-import { HomePage } from 'src/pages/home/home.page';
-import { CartPage } from 'src/pages/cart/cart.page';
-import { CheckoutPage } from 'src/pages/checkout/checkout.page';
-import { StorePage } from 'src/pages/store/store.page';
-import { ProductDetailPage } from 'src/pages/product-detail/product-detail.page';
-import { ProfilePage } from 'src/pages/profile/profile.page';
-import { PlanService } from 'src/services/plan.service';
-import { HttpClientModule } from '@angular/common/http';
-
-const appRoutes: Routes = [
-  { path: 'home', component: HomePage },
-  { path: 'cart', component: CartPage },
-  { path: 'checkout', component: CheckoutPage },
-  { path: 'store', component: StorePage },
-  { path: 'store/product-detail', component: ProductDetailPage },
-  { path: 'profile', component: ProfilePage },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  {
-    path: '**', redirectTo: 'home'
-  }
-];
-
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginModule } from './login/login.module';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthService } from './auth/auth.service';
+import { PlanService } from './plans/plans.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpConfigInterceptor } from 'interceptors/http.interceptor';
+import { ProductService } from './products/product.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes, {
-      anchorScrolling: 'enabled',
-    }),
-    PageModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ComponentsModule,
+    RouterModule,
+    AppRoutingModule,
+    LoginModule
   ],
-  providers: [PlanService],
+  declarations: [
+    AppComponent,
+    AdminLayoutComponent
+  ],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    PlanService,
+    ProductService,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

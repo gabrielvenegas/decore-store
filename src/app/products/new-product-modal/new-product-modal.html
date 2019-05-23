@@ -1,0 +1,97 @@
+<h1 mat-dialog-title>Novo produto</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="product.name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select matInput [(ngModel)]="product.idCategory">
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="product.idCategory === 4 || product.idCategory === 5 || product.idCategory === 6">
+        <mat-label>Tipo</mat-label>
+        <mat-select matInput [(ngModel)]="product.type">
+            <mat-option value="1">
+                Quadrada
+            </mat-option>
+            <mat-option value="2">
+                Redonda
+            </mat-option>
+            <mat-option *ngIf="product.idCategory != 6" value="3">
+                Retangular
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="row">
+        <div class="col-3">
+            <mat-form-field>
+                <mat-label>Altura</mat-label>
+                <input matInput [(ngModel)]="product.height">
+            </mat-form-field>
+        </div>
+
+        <div class="col-3" *ngIf="product.type !== '2'">
+            <mat-form-field>
+                <mat-label>Largura</mat-label>
+                <input matInput [(ngModel)]="product.width">
+            </mat-form-field>
+        </div>
+
+        <div class="col-3" *ngIf="product.type != '2'">
+            <mat-form-field>
+                <mat-label>Comprimento</mat-label>
+                <input matInput [(ngModel)]="product.length">
+            </mat-form-field>
+        </div>
+
+        <div class="col-3">
+            <mat-form-field>
+                <mat-label>Peso</mat-label>
+                <input matInput [(ngModel)]="product.weight">
+            </mat-form-field>
+        </div>
+
+        <div class="col-3" *ngIf="product.type === '2'">
+            <mat-form-field>
+                <mat-label>Diametro</mat-label>
+                <input matInput [(ngModel)]="product.diameter">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field>
+                <mat-label>Preço</mat-label>
+                <input matInput [(ngModel)]="product.price">
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field>
+                <mat-label>Preço com desconto</mat-label>
+                <input matInput [(ngModel)]="product.discountPrice">
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-label>Tampo</mat-label>
+
+    <mat-radio-group [(ngModel)]="product.cover" aria-label="Select an option">
+        <mat-radio-button value="1">Vidro</mat-radio-button>
+        <mat-radio-button style="padding-left: 2%;" value="2">Espelho</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field>
+        <mat-label>Quantidade</mat-label>
+        <input matInput [(ngModel)]="product.amount">
+    </mat-form-field>
+    <mat-checkbox (change)="addColors($event)" [value]="color.id" style="padding-left: 2%;" *ngFor="let color of colors; trackBy:color?.id;">{{color.name}}</mat-checkbox>
+    <div mat-dialog-actions>
+        <button mat-button class="btn btn-success" (click)="create()">CRIAR</button>
+    </div>
+</div>

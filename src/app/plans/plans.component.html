@@ -1,0 +1,86 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">Planos</h4>
+            <p class="card-category">Listagem de planos no sistema</p>
+            <div class="row">
+              <div class="col-md-10">
+                <!-- <mat-form-field>
+                  <input [(ngModel)]="seachText" (ngModelChange)="search()" name="search" matInput placeholder="Pesquisar"
+                    type="text">
+                </mat-form-field> -->
+              </div>
+              <div class="col-md-2 text-right">
+                <button class="btn btn-success" (click)="newPlan()">Novo plano</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    Ref
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Código
+                  </th>
+                  <th>
+                    Dia da cobrança
+                  </th>
+                  <th>
+                    Período
+                  </th>
+                  <th>
+                    Data inicial
+                  </th>
+                  <th>
+                    Data final
+                  </th>
+                  <th class="text-right">
+                    Ações
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let plan of plans">
+                    <td>
+                      {{plan.reference}}
+                    </td>
+                    <td>
+                      {{plan.name}}
+                    </td>
+                    <td>
+                      {{plan.code}}
+                    </td>
+                    <td>
+                      {{plan.dayOfMonth}}
+                    </td>
+                    <td>
+                      {{plan.period}}
+                    </td>
+                    <td>
+                      {{plan.initialDate | date: 'dd/MM/yyyy'}}
+                    </td>
+                    <td>
+                      {{plan.finalDate | date: 'dd/MM/yyyy'}}
+                    </td>
+                    <td class="text-right">
+                      <button class="btn btn-sm btn-info" (click)="openDialog(plan)">Editar</button>
+                      <button class="btn btn-sm btn-danger">Apagar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

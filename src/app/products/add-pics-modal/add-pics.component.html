@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Gerenciamento de imagens</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <div *ngFor="let photo of product?.photos" class="col-3">
+            <img style="width: 100px" [src]="photo?.path" alt="{{photo?.id}}">
+        </div>
+    </div>
+    <div style="padding-top: 5%;">
+        <angular-file-uploader [config]="
+        afuConfig" (ApiResponse)="getProduct()">
+        </angular-file-uploader>
+    </div>
+</div>
