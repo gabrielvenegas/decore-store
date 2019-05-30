@@ -13,7 +13,7 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field *ngIf="product.idCategory === 4 || product.idCategory === 5 || product.idCategory === 6">
+    <mat-form-field *ngIf="product.category.id === 4 || product.category.id === 5 || product.category.id === 6">
         <mat-label>Tipo</mat-label>
         <mat-select matInput [(ngModel)]="product.type">
             <mat-option value="1">
@@ -22,7 +22,7 @@
             <mat-option value="2">
                 Redonda
             </mat-option>
-            <mat-option *ngIf="product.idCategory != 6" value="3">
+            <mat-option *ngIf="product.category.id != 6" value="3">
                 Retangular
             </mat-option>
         </mat-select>
