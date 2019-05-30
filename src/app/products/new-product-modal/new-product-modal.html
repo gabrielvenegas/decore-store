@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Novo produto</h1>
+<h1 mat-dialog-title>{{title}}</h1>
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Nome</mat-label>
@@ -6,7 +6,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>Categoria</mat-label>
-        <mat-select matInput [(ngModel)]="product.idCategory">
+        <mat-select [compareWith]="compareObjects" matInput [ngModel]="product.category.id" (ngModelChange)="changeCategory($event)">
             <mat-option *ngFor="let category of categories" [value]="category.id">
                 {{category.name}}
             </mat-option>
@@ -79,8 +79,7 @@
             </mat-form-field>
         </div>
     </div>
-    <mat-label>Tampo</mat-label>
-
+    <p>Tampo </p>
     <mat-radio-group [(ngModel)]="product.cover" aria-label="Select an option">
         <mat-radio-button value="1">Vidro</mat-radio-button>
         <mat-radio-button style="padding-left: 2%;" value="2">Espelho</mat-radio-button>
@@ -90,8 +89,13 @@
         <mat-label>Quantidade</mat-label>
         <input matInput [(ngModel)]="product.amount">
     </mat-form-field>
-    <mat-checkbox (change)="addColors($event)" style="padding-left: 2%;" *ngFor="let color of colors" [value]="color.id">{{color.name}}</mat-checkbox>
+
+    <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <textarea matInput [(ngModel)]="product.description" rows="4"></textarea>
+    </mat-form-field>
+    <!-- <mat-checkbox (change)="addColors($event)" style="padding-left: 2%;" *ngFor="let color of colors" [value]="color.id">{{color.name}}</mat-checkbox> -->
     <div mat-dialog-actions>
-        <button mat-button class="btn btn-success" (click)="create()">CRIAR</button>
+        <button mat-button class="btn btn-success" (click)="create()">{{buttonText}}</button>
     </div>
 </div>

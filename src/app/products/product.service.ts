@@ -32,4 +32,8 @@ export class ProductService {
     getColors(): Observable<any[]> {
         return this.http.get<any[]>(`${environment.url}/utils/color`);
     }
+
+    disable(id: number): Observable<any> {
+        return this.http.get<any>(`${this._url}/disable/${id}`);
+    }
 }

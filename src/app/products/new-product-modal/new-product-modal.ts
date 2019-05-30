@@ -15,7 +15,6 @@ export class NewProductModal implements OnInit, OnDestroy {
         name: '',
         price: 0,
         discountPrice: 0,
-        idCategory: 0,
         type: "0",
         height: 0,
         width: 0,
@@ -24,20 +23,33 @@ export class NewProductModal implements OnInit, OnDestroy {
         length: 0,
         cover: 0,
         amount: 0,
-        colors: []
+        colors: [],
+        description: "",
+        category: {
+            id: 0,
+            name: ""
+        }
     };
     categories: any[]
-    colors: any[]
+    colors: any[];
+    title = 'Novo Produto';
+    buttonText = 'CRIAR';
     // Private variables
     private _destroyed$ = new Subject();
     constructor(
         public dialogRef: MatDialogRef<NewProductModal>,
-        private productService: ProductService) {
+        private productService: ProductService,
+        @Inject(MAT_DIALOG_DATA) public data: any) {
     }
 
     ngOnInit(): void {
         this.getCategories();
         this.getColors();
+        if (this.data) {
+            this.product = this.data;
+            this.title = `Editar ${this.product.name}`;
+            this.buttonText = 'ATUALIZAR';
+        }
     }
 
     onNoClick(): void {
@@ -45,7 +57,6 @@ export class NewProductModal implements OnInit, OnDestroy {
     }
 
     create() {
-        // console.log(this.product);
         this.productService.create(this.product)
             .pipe(takeUntil(this._destroyed$))
             .subscribe(res => {
@@ -79,5 +90,13 @@ export class NewProductModal implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this._destroyed$.next();
         this._destroyed$.complete();
+    }
+
+    compareObjects(o1: any, o2: any): boolean {
+        return o1 === o2;
+    }
+
+    changeCategory(event) {
+        this.product.category.id = event;
     }
 }

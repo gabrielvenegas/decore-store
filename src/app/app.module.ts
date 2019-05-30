@@ -15,6 +15,7 @@ import { PlanService } from './plans/plans.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from 'interceptors/http.interceptor';
 import { ProductService } from './products/product.service';
+import { DashboardService } from './dashboard/dashboard.service';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { ProductService } from './products/product.service';
     AuthGuardService,
     PlanService,
     ProductService,
+    DashboardService,
     {
       provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true
     }

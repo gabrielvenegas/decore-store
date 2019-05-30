@@ -36,10 +36,10 @@ export class ProductsComponent implements OnInit {
       .subscribe(res => this.products = res);
   }
 
-  openDialog(component, size = '600px', id?: number): void {
+  openDialog(component, size = '600px', data?: any): void {
     const dialogRef = this.dialog.open(component, {
       width: size,
-      data: id ? id : null
+      data: data ? data : null
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -48,11 +48,24 @@ export class ProductsComponent implements OnInit {
   }
 
   newProduct() {
-    this.openDialog(NewProductModal);
+    this.openDialog(NewProductModal, '1000px');
   }
 
   addPics(id: number) {
     this.openDialog(AddPicsComponent, '600px', id);
+  }
+
+  editProduct(product: any) {
+    this.openDialog(NewProductModal, '600px', product);
+  }
+
+  disable(id: number) {
+    this.productService.disable(id)
+      .subscribe(res => {
+        if (res.status) {
+          this.getProducts();
+        }
+      })
   }
 
   ngOnDestroy(): void {

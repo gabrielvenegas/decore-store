@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   // public methods
   public login(): void {
+    console.log(this.loginParams)
     this.loginService.login(this.loginParams)
       .pipe(takeUntil(this._destroyed$))
       .subscribe(
